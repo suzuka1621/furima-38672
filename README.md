@@ -4,17 +4,18 @@
 
 | Column             | Type                | Options                        |
 |--------------------|---------------------|--------------------------------|
-| nickname           | string              | null: false, unique: true      |
+| nickname           | string              | null: false,                   |
 | email              | string              | null: false, unique: true      |
-| password           | string              | null: false                    |
+| encrypted_password | string              | null: false                    |
 | real_name          | string              | null: false                    |
-| birthday           | integer             | null: false                    |
+| real_name_reading  | string              | null: false                    |
+| birthday           | date                | null: false                    |
 
 ### Association
 
 * has_many :items
 * has_many :comments
-* has_one :order
+* has_many :orders
 
 
 ## items テーブル
@@ -22,25 +23,23 @@
 | Column             | Type               | Options                        |
 |--------------------|--------------------|--------------------------------|
 | item               | string             | null: false                    |
-| image              | text               | null: false                    |
-| text               | text               | null: false                    |
+| introduction       | text               | null: false                    |
 | price              | integer            | null: false                    |
-| shipping_cost      | string             | null: false                    |
-| item_status        | string             | null: false                    |
-| shipping_date      | string             | null: false                    |
 | user               | references         | null: false, foreign_key: true |
+| comment            | references         | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_many :comments
+- has_one :order
 
 
 ## comments テーブル
 
 | Column             | Type       | Options                                |
 |--------------------|------------|----------------------------------------|
-| text               | text       | null: false                            |
+| comment            | text       | null: false                            |
 | user               | references | null: false, foreign_key: true         |
 | item               | references | null: false, foreign_key: true         |
 
@@ -54,10 +53,24 @@
 
 | Column             | Type       | Options                                |
 |--------------------|------------|----------------------------------------|
-| address            | string     | null: false                            |
-| phone_number       | references | null: false, foreign_key: true         |
 | user               | references | null: false, foreign_key: true         |
+| item               | references | null: false, foreign_key: true         |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :item
+- has_one :delivery
+
+
+## deliveries テーブル
+
+| Column             | Type       | Options                                |
+|--------------------|------------|----------------------------------------|
+| address            | string     | null: false                            |
+| phone_number       | string     | null: false,                           |
+| order              | references | null: false, foreign_key: true         |
+
+### Association
+
+- belongs_to :order
