@@ -30,7 +30,7 @@
 | category_id        | integer            | null: false                    |
 | item_status_id     | integer            | null: false                    |
 | delivery_cost_id   | integer            | null: false                    |
-| delivery_region_id | integer            | null: false                    |
+| prefecture_id      | integer            | null: false                    |
 | delivery_day_id    | integer            | null: false                    |
 | user               | references         | null: false, foreign_key: true |     
 
@@ -82,7 +82,7 @@
 | prefecture_id      | integer    | null: false                            |
 | municipalities     | string     | null: false                            |
 | address_number     | string     | null: false                            |
-| building           | string     | null: false                            |
+| building           | string     |                                        |
 | phone_number       | string     | null: false                            |
 | order              | references | null: false, foreign_key: true         |
 
