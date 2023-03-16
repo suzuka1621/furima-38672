@@ -6,7 +6,7 @@ class User < ApplicationRecord
   
   validates :nickname, :last_name, :first_name, :last_name_reading, :first_name_reading, :birthday, presence: true
 
-  validates :password, format: { with: /\A(?=.&#042;?[a-z])(?=.&#042;?\d)[a-z\d]+\z/i, message: "is invalid. Include both letters and numbers" }
+  validates :password, format: { with: /\A[a-z0-9]+\z/, message: "is invalid. Include both letters and numbers" }
 
   validates :last_name, :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters" }
 
