@@ -7,4 +7,6 @@ class Item < ApplicationRecord
   belongs_to :delivery_cost
   belongs_to :delivery_region
   belongs_to :delivery_day
+  
+  has_one_attached :image
 end
