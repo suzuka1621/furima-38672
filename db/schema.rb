@@ -38,14 +38,14 @@ ActiveRecord::Schema.define(version: 2023_03_18_122717) do
     t.text "introduction"
     t.integer "price"
     t.integer "category_id"
-    t.integer "item_status_id"
+    t.integer "item_state_id"
     t.integer "delivery_cost_id"
     t.integer "prefecture_id"
     t.integer "delivery_day_id"
-    t.bigint "user_id_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id_id"], name: "index_items_on_user_id_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

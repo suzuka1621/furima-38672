@@ -28,7 +28,7 @@
 | introduction       | text               | null: false                    |
 | price              | integer            | null: false                    |
 | category_id        | integer            | null: false                    |
-| item_status_id     | integer            | null: false                    |
+| item_state_id      | integer            | null: false                    |
 | delivery_cost_id   | integer            | null: false                    |
 | prefecture_id      | integer            | null: false                    |
 | delivery_day_id    | integer            | null: false                    |
