@@ -12,8 +12,12 @@ class Item < ApplicationRecord
   belongs_to :delivery_day
 
   #共通のバリデーション
-  validates :item, :introduction, :price, :category_id, :item_state_id, :delivery_cost_id, :prefecture_id, :delivery_day_id, presence: true
-  
+  validates :image, :item, :introduction, :price, :category_id, :item_state_id, :delivery_cost_id, :prefecture_id, :delivery_day_id, presence: true
+
+  #priceのバリデーション
+  validates :price, numericality: { with: /\A[0-9]+\z/, message: "is invalid. Input half-width characters" },
+            inclusion: { in: 300..9_999_999, message: "is out of setting range" }
+
   #category_idの設定
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
 
