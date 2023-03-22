@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index,:show]
-  
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
-   #今後の機能で必要になるかもしれないので一旦コメントアウトで保留
-   #@items = Item.order('created_at DESC')
+    # 今後の機能で必要になるかもしれないので一旦コメントアウトで保留
+    # @items = Item.order('created_at DESC')
   end
 
   def new
