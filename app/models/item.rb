@@ -16,7 +16,7 @@ class Item < ApplicationRecord
             :delivery_day_id, presence: true
 
   # priceのバリデーション
-  validates :price, numericality: { message: 'is invalid. Input half-width characters' },
+  validates :price, numericality: { only_integer: true, message: 'is invalid. Input half-width characters' },
             inclusion: { in: 300..9_999_999, message: 'is out of setting range' }
 
   # category_idの設定
