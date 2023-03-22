@@ -11,6 +11,11 @@ RSpec.describe Item, type: :model do
       end
     end
     context '出品登録できないとき' do
+      it 'imageが空では登録できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
       it 'itemが空では登録できない' do
         @item.item = ''
         @item.valid?
@@ -36,35 +41,45 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
       end
+      it 'priceが9,999,999を超えると登録できない' do
+        @item.price = '99999991'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
+      end
       it 'priceが300未満では登録できない' do
         @item.price = '299'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
-      it 'category_idが空では登録できない' do
-        @item.category_id = ''
+      it 'category_idが1では登録できない' do
+        @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it 'item_state_idが空では登録できない' do
-        @item.item_state_id = ''
+      it 'item_state_idが1では登録できない' do
+        @item.item_state_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Item state can't be blank")
       end
-      it 'delivery_cost_idが空では登録できない' do
-        @item.delivery_cost_id = ''
+      it 'delivery_cost_idが1では登録できない' do
+        @item.delivery_cost_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery cost can't be blank")
       end
-      it 'prefecture_idが空では登録できない' do
-        @item.prefecture_id = ''
+      it 'prefecture_idが1では登録できない' do
+        @item.prefecture_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it 'delivery_day_idが空では登録できない' do
-        @item.delivery_day_id = ''
+      it 'delivery_day_idが1では登録できない' do
+        @item.delivery_day_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery day can't be blank")
+      end
+      it 'userが紐づいていなければ登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end

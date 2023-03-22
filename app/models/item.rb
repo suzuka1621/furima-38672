@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
-  has_many :comments
-  has_one :order
+  #has_many :comments #今後の実装で使うが今は保留
+  #has_one :order #今後の実装で使うが今は保留
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -16,8 +16,8 @@ class Item < ApplicationRecord
             :delivery_day_id, presence: true
 
   # priceのバリデーション
-  validates :price, numericality: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' },
-                    inclusion: { in: 300..9_999_999, message: 'is out of setting range' }
+  validates :price, numericality: { message: 'is invalid. Input half-width characters' },
+            inclusion: { in: 300..9_999_999, message: 'is out of setting range' }
 
   # category_idの設定
   validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
