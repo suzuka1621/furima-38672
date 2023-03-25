@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  
+
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -24,9 +24,9 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    unless current_user.id == @item.user_id
+    return if current_user.id == @item.user_id
+
     redirect_to items_path
-    end
   end
 
   def update
