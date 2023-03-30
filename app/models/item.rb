@@ -5,11 +5,11 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category
-  belongs_to :item_state
-  belongs_to :delivery_cost
-  belongs_to :prefecture
-  belongs_to :delivery_day
+  belongs_to_active_hash :category
+  belongs_to_active_hash :item_state
+  belongs_to_active_hash :delivery_cost
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :delivery_day
 
   # 共通のバリデーション
   validates :image, :item, :introduction, :price, :category_id, :item_state_id, :delivery_cost_id, :prefecture_id,
