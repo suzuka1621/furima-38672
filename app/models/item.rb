@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   # has_many :comments #今後の実装で使うが今は保留
-  # has_one :order #今後の実装で使うが今は保留
+  has_one :order
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions

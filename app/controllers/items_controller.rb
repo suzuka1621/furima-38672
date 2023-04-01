@@ -23,6 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.order.present?
+      redirect_to root_path
+    end
     return if current_user.id == @item.user_id
 
     redirect_to items_path
@@ -56,4 +59,5 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
 end
