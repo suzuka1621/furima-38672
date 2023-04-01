@@ -27,12 +27,12 @@ RSpec.describe OrderDelivery, type: :model do
       it 'post_codeが3桁ハイフン4桁の半角英数字でないと保存できないこと' do
         @order_delivery.post_code = '1234567'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Post code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order_delivery.errors.full_messages).to include('Post code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it 'postal_codeが全角数字では保存できないこと' do
         @order_delivery.post_code = '１２３４-５６７'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Post code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order_delivery.errors.full_messages).to include('Post code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it 'prefecture_idが1(---)では登録できない' do
         @order_delivery.prefecture_id = '1'
@@ -57,22 +57,22 @@ RSpec.describe OrderDelivery, type: :model do
       it 'phone_numberが9桁以下では保存できないこと' do
         @order_delivery.phone_number = '123456789'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Phone number is too short or too long")
+        expect(@order_delivery.errors.full_messages).to include('Phone number is too short or too long')
       end
       it 'phone_numberが12桁以上では保存できないこと' do
         @order_delivery.phone_number = '123456789123'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Phone number is too short or too long")
+        expect(@order_delivery.errors.full_messages).to include('Phone number is too short or too long')
       end
       it 'phone_numberにハイフンが入っていると保存できないこと' do
         @order_delivery.phone_number = '123-4567-8901'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@order_delivery.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
       it 'phone_numberが全角数字は保存できないこと' do
         @order_delivery.phone_number = '１２３４５６７８９０１'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@order_delivery.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
       it 'user_idが紐づいていなければ保存できないこと' do
         @order_delivery.user_id = ''
