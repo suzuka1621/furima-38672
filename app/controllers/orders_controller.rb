@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
     @order_delivery = OrderDelivery.new
   end
 
-  def create    
+  def create
     @order_delivery = OrderDelivery.new(order_params)
     if @order_delivery.valid?
       pay_item
